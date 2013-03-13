@@ -1,8 +1,43 @@
 module.exports = function(app) {
+	var LOGIN_SESSION_COOKIE_NAME = "simple_todo_session";
+
 	app.get("/session", function(req, res) {
-		// for now, let's hard code that we're logged in
-		res.send({
-			username: "Biff"
-		});
+		// the username is stored in the session cookie
+		var username = req.cookies[LOGIN_SESSION_COOKIE_NAME];
+
+		if (username) {
+			res.send({
+				username: username
+			});
+		} else {
+			// they are not logged in, return nothing
+			res.send("");
+		}
+	});
+
+	app.post("/session", function(req, res) {
+		var username = req.body.username;
+
+		// set the username in the session cookie
+		// effectively "logging them in"
+		res.cookie(LOGIN_SESSION_COOKIE_NAME, username);
+		res.send("true");
+	});
+
+	app.delete("/session", function(req, res) {
+		// clearing the cookie "logs them out"
+		res.clearCookie(LOGIN_SESSION_COOKIE_NAME);
+		res.send("true");
+	});
+
+
+	// TODO delete later, only for debugging
+	app.get("/login", function(req, res) {
+		res.cookie(LOGIN_SESSION_COOKIE_NAME, "Biff");
+		res.send("true");
+	});
+	app.get("/logout", function(req, res) {
+		res.clearCookie(LOGIN_SESSION_COOKIE_NAME);
+		res.send("true");
 	});
 };
