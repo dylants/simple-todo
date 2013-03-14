@@ -1,95 +1,68 @@
+var TodoDatabase = require("../utilities/todoDatabase");
+var todoDB = new TodoDatabase();
+
 module.exports = function(app) {
 
 	app.get("/todo", function(req, res) {
-		res.send(req.session.todos);
+		var todos;
+
+		// get the list of todos for this user, and return them
+		todos = todoDB.getTodos("1");
+		res.send(todos);
 	});
 
 	app.post("/todo", function(req, res) {
-		var content, todos, todo;
+		var todo;
 
-		content = req.body.content;
+		// create a todo using the incoming content
 		todo = {
 			id: (new Date()).getTime(),
-			content: content
+			content: req.body.content
 		};
 
-		// need to add it to the existing list of todos
-		todos = req.session.todos;
-		// if the todos don't yet exist...
-		if (todos === undefined) {
-			// create the todos
-			todos = [];
-		}
-		// add it to the list
-		todos.push(todo);
-
-		// store it back in the session
-		req.session.todos = todos;
+		// add it to the existing list of todos for this user
+		todoDB.addTodo("1", todo);
 
 		// return back the object
 		res.send(todo);
 	});
 
 	app.put("/todo/:id", function(req, res) {
-		var id, content, todos, index, todo;
+		var todo, updateSuccessful;
 
-		todos = req.session.todos;
-		id = req.params.id;
-		content = req.body.content;
+		// use the incoming data to build a todo
 		todo = {
-			id: id,
-			content: content
+			id: req.params.id,
+			content: req.body.content
 		};
 
-		// loop over the array of todos to find the index of the matching todo
-		for (index=0; index<todos.length; index++) {
-			if (todos[index].id == id) {
-				break;
-			}
+		// update the existing todo with this one
+		updateSuccessful = todoDB.updateTodo("1", todo);
+
+		if (updateSuccessful) {
+			// return back the object
+			res.send(todo);
+		} else {
+			// return back false
+			res.send("false");
 		}
-
-		if (index === todos.length) {
-			// we never found it, return here
-			res.send(false);
-			return;
-		}
-
-		// update the todo
-		todos[index] = todo;
-
-		// store it back in the session
-		req.session.todos = todos;
-
-		// return back the object
-		res.send(todo);
 	});
 
 	app.delete("/todo/:id", function(req, res) {
-		var id, todos, index;
+		var id, deleteSuccessful;
 
-		todos = req.session.todos;
+		// the ID of the todo to delete
 		id = req.params.id;
 
-		// loop over the array of todos to find the index of the matching todo
-		for (index=0; index<todos.length; index++) {
-			if (todos[index].id == id) {
-				break;
-			}
-		}
+		// delete the todo
+		deleteSuccessful = todoDB.deleteTodo("1", id);
 
-		if (index === todos.length) {
-			// we never found it, return here
+		if (deleteSuccessful) {
+			// return back true
+			res.send(true);
+		} else {
+			// return back false
 			res.send(false);
-			return;
 		}
-
-		// remove the one found element
-		todos.splice(index, 1);
-
-		// store it back in the session
-		req.session.todos = todos;
-
-		// return back true
-		res.send(true);
 	});
 };
