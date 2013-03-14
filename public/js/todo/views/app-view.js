@@ -26,7 +26,7 @@ function (Backbone, $, SessionModel, LoginView, ListViewModel, ListView) {
 		},
 
 		renderLogin: function() {
-			var loginModel, loginView;
+			var sessionModel, loginView;
 
 			sessionModel = new SessionModel();
 			loginView = new LoginView({

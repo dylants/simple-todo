@@ -16,13 +16,8 @@ function (Backbone, $, appView) {
 		},
 
 		landing: function() {
-			if (this.isLoggedIn()) {
-				// if the user is logged in, send them to the list view
-				this.navigate("list", { trigger: true });
-			} else {
-				// else send them to login
-				this.navigate("login", { trigger: true });
-			}
+			// our default behavior is to send them to the list page
+			this.navigate("list", { trigger: true });
 		},
 
 		login: function() {
@@ -31,13 +26,20 @@ function (Backbone, $, appView) {
 		},
 
 		list: function() {
-			// render the list view
-			appView.renderList();
-		},
-
-		isLoggedIn: function() {
-			// TODO implement me!
-			return true;
+			$.get("/session").done(function(data) {
+				if (data && data.username) {
+					// they are logged in, render the list view
+					appView.renderList();
+				} else {
+					// they are not logged in
+					// send them to the login page
+					Backbone.history.navigate("login", { trigger: true });
+				}
+			}).fail(function() {
+				console.log("failed to check status on session");
+				// send them to the login page
+				Backbone.history.navigate("login", { trigger: true });
+			});
 		}
 	});
 
