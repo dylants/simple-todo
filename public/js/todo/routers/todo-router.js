@@ -36,7 +36,7 @@ function (Backbone, $, appView) {
 					Backbone.history.navigate("login", { trigger: true });
 				}
 			}).fail(function() {
-				console.log("failed to check status on session");
+				console.error("failed to check status on session!");
 				// send them to the login page
 				Backbone.history.navigate("login", { trigger: true });
 			});

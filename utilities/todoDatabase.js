@@ -1,11 +1,29 @@
+/**
+ * An in memory database that holds Todos. Todos contain both an ID and a piece
+ * of content, and are tied to a userId. Each todo belongs to only one user, and
+ * a user may have as many todos as they wish. This class provides methods to
+ * get all the todos for a user, as well as add, update, or delete a todo for a user.
+ */
 function TodoDatabase() {
 	this.todoDB = {};
 };
 
+/**
+ * Returns all the todos for this userId
+ * 
+ * @param  {string} userId The ID of the user
+ * @return {array}         The list of todos for this user
+ */
 TodoDatabase.prototype.getTodos = function(userId) {
 	return this.todoDB[userId];
 };
 
+/**
+ * Adds a todo for a given userId
+ * 
+ * @param {string} userId  The ID of the user
+ * @param {string} content The content of the new Todo
+ */
 TodoDatabase.prototype.addTodo = function(userId, content) {
 	var todo;
 
@@ -27,6 +45,14 @@ TodoDatabase.prototype.addTodo = function(userId, content) {
 	return todo;
 };
 
+/**
+ * Updates a Todo specified by the todoId for this userId
+ * 
+ * @param  {string} userId      The ID of the user
+ * @param  {object} todoId      The ID of the todo to update
+ * @param  {string} todoContent The content to update for this todo
+ * @return {object}             The updated todo
+ */
 TodoDatabase.prototype.updateTodo = function(userId, todoId, todoContent) {
 	var todo, todos, index;
 
@@ -57,6 +83,13 @@ TodoDatabase.prototype.updateTodo = function(userId, todoId, todoContent) {
 	return todo;
 };
 
+/**
+ * Deletes a Todo specified by the todoId for this userId
+ * 
+ * @param  {string} userId The ID of the user
+ * @param  {object} todoId The ID of the todo
+ * @return {boolean}       True iff the delete was successful
+ */
 TodoDatabase.prototype.deleteTodo = function(userId, todoId) {
 	var todos, index;
 
