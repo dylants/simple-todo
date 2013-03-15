@@ -48,7 +48,7 @@ AuthenticationManager.prototype.login = function(username, req, res) {
 	// To login the user, we set the username in the session
 	// cookie. This is obviously not the highest security, but
 	// works for our demo application.
-	res.cookie(AUTH_SESSION_COOKIE_NAME, username);
+	res.cookie(AUTH_SESSION_COOKIE_NAME, username, { httpOnly: true });
 };
 
 /**
