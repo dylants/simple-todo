@@ -13,11 +13,7 @@ function (Backbone, $, SessionModel, LoginView, ListViewModel, ListView) {
 
 	var appView = new (Backbone.View.extend({
 
-		el: "#todo-app",
-
-		events: {
-			"click #logout": "logout"
-		},
+		el: "#app-view",
 
 		initialize: function() {
 		},
@@ -43,18 +39,7 @@ function (Backbone, $, SessionModel, LoginView, ListViewModel, ListView) {
 				model: listViewModel
 			});
 			$("#view").html(listView.render().el);
-		},
-
-		logout: function() {
-			// to logout we perform a delete on the session resource
-			$.ajax({
-				type: "DELETE",
-				url: "/server/session"
-			}).done(function() {
-				Backbone.history.navigate("login", { trigger: true });
-			});
 		}
-
 	}))();
 
 	// return this instance of our app view to use wherever required

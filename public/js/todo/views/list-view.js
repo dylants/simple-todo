@@ -17,7 +17,9 @@ function (Backbone, _, $, TodoItemView, TodoModel, todoList) {
 
 		events: {
 			// bind clicking the button to the addTodo method below
-			"click #add-todo": "addTodo"
+			"click #add-todo": "addTodo",
+			// bind clicking the logout button to logout method below
+			"click #logout": "logout"
 		},
 
 		initialize: function() {
@@ -80,6 +82,18 @@ function (Backbone, _, $, TodoItemView, TodoModel, todoList) {
 			// will automatically handle adding it to the right collection
 			todoModel.save();
 
+		},
+
+		logout: function() {
+			// to logout we perform a delete on the session resource
+			$.ajax({
+				type: "DELETE",
+				url: "/session"
+			}).done(function() {
+				Backbone.history.navigate("login", { trigger: true });
+			}).fail(function() {
+				console.error("unable to delete session!");
+			});
 		}
 
 	});
