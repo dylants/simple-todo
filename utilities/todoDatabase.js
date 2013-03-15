@@ -6,18 +6,35 @@ TodoDatabase.prototype.getTodos = function(userId) {
 	return this.todoDB[userId];
 };
 
-TodoDatabase.prototype.addTodo = function(userId, todo) {
+TodoDatabase.prototype.addTodo = function(userId, content) {
+	var todo;
+
 	if (!this.todoDB[userId]) {
 		// initialize the array of todos
 		this.todoDB[userId] = [];
 	}
 
+	// create a todo using the incoming content
+	todo = {
+		id: (new Date()).getTime(),
+		content: content
+	};
+
 	// add the todo
 	this.todoDB[userId].push(todo);
+
+	// return the todo
+	return todo;
 };
 
-TodoDatabase.prototype.updateTodo = function(userId, todo) {
-	var todos, index;
+TodoDatabase.prototype.updateTodo = function(userId, todoId, todoContent) {
+	var todo, todos, index;
+
+	// use the incoming data to build a todo
+	todo = {
+		id: todoId,
+		content: todoContent
+	};
 
 	todos = this.todoDB[userId];
 
@@ -36,8 +53,8 @@ TodoDatabase.prototype.updateTodo = function(userId, todo) {
 	// update the todo
 	todos[index] = todo;
 
-	// return true
-	return true;
+	// return the todo
+	return todo;
 };
 
 TodoDatabase.prototype.deleteTodo = function(userId, todoId) {

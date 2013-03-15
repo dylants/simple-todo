@@ -14,32 +14,20 @@ module.exports = function(app) {
 	app.post("/todo", function(req, res) {
 		var todo;
 
-		// create a todo using the incoming content
-		todo = {
-			id: (new Date()).getTime(),
-			content: req.body.content
-		};
-
-		// add it to the existing list of todos for this user
-		todoDB.addTodo("1", todo);
+		// add todo using the incoming content to the current user
+		todo = todoDB.addTodo("1", req.body.content);
 
 		// return back the object
 		res.send(todo);
 	});
 
 	app.put("/todo/:id", function(req, res) {
-		var todo, updateSuccessful;
+		var todo;
 
-		// use the incoming data to build a todo
-		todo = {
-			id: req.params.id,
-			content: req.body.content
-		};
+		// update the existing todo with the incoming data
+		todo = todoDB.updateTodo("1", req.params.id, req.body.content);
 
-		// update the existing todo with this one
-		updateSuccessful = todoDB.updateTodo("1", todo);
-
-		if (updateSuccessful) {
+		if (todo) {
 			// return back the object
 			res.send(todo);
 		} else {
@@ -49,13 +37,10 @@ module.exports = function(app) {
 	});
 
 	app.delete("/todo/:id", function(req, res) {
-		var id, deleteSuccessful;
+		var deleteSuccessful;
 
-		// the ID of the todo to delete
-		id = req.params.id;
-
-		// delete the todo
-		deleteSuccessful = todoDB.deleteTodo("1", id);
+		// delete the todo using the incoming ID
+		deleteSuccessful = todoDB.deleteTodo("1", req.params.id);
 
 		if (deleteSuccessful) {
 			// return back true
