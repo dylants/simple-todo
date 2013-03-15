@@ -11,6 +11,8 @@ function (Backbone, _, $, todoLogin) {
 
 	return Backbone.View.extend({
 
+		id: "view-container",
+
 		template: _.template(todoLogin),
 
 		events: {

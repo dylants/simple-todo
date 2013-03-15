@@ -13,6 +13,8 @@ function (Backbone, _, $, TodoItemView, TodoModel, todoList) {
 
 	return Backbone.View.extend({
 
+		id: "view-container",
+
 		template: _.template(todoList),
 
 		events: {

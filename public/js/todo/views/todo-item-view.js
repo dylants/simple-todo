@@ -10,11 +10,13 @@ function (Backbone, _, todoItem) {
 
 	return Backbone.View.extend({
 
+		className: "todo",
+
 		template: _.template(todoItem),
 
 		events: {
-			"click #edit-todo": "editTodo",
-			"click #delete-todo": "deleteTodo"
+			"click .edit-todo": "editTodo",
+			"click .delete-todo": "deleteTodo"
 		},
 
 		initialize: function() {

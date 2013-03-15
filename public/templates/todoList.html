@@ -1,8 +1,12 @@
-<div id="todo-list">
-    <p>
-    	Welcome <%- username %>
-    	<button id="logout">Logout</button>
-    </p>
+<header>
+    <h1>Todo List</h1>
+    <div id="user-auth-data">
+        <p id="welcome">Welcome <%- username %></p>
+        <button id="logout">Logout</button>
+    </div>
+</header>
+
+<section id="main">
     <p>Your Todos</p>
     <div id="todos">
     </div>
@@ -10,4 +14,4 @@
         <input type="text" id="todo-content" name="todo-content" autofocus="autofocus"/>
         <button id="add-todo">Add Todo</button>
     </form>
-</div>
+</section>

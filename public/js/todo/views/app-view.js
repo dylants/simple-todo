@@ -28,7 +28,7 @@ function (Backbone, $, SessionModel, LoginView, ListViewModel, ListView) {
 			loginView = new LoginView({
 				model: sessionModel
 			});
-			$("#view").html(loginView.render().el);
+			this.$el.html(loginView.render().el);
 		},
 
 		renderList: function() {
@@ -38,7 +38,7 @@ function (Backbone, $, SessionModel, LoginView, ListViewModel, ListView) {
 			listView = new ListView({
 				model: listViewModel
 			});
-			$("#view").html(listView.render().el);
+			this.$el.html(listView.render().el);
 		}
 	}))();
 
