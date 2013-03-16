@@ -13,48 +13,36 @@ function (Backbone, _, $, TodoItemView, TodoModel, todoList) {
 
 	return Backbone.View.extend({
 
-		id: "view-container",
+		el: "#main",
 
 		template: _.template(todoList),
 
 		events: {
 			// bind clicking the button to the addTodo method below
-			"click #add-todo": "addTodo",
-			// bind clicking the logout button to logout method below
-			"click #logout": "logout"
+			"click #add-todo": "addTodo"
 		},
 
 		initialize: function() {
-			// bind the sync of user model data to rendering this entire list view
-			this.model.getUserModel().on( "sync", this.renderList, this );
-			// bind the sync on todo collection to just rendering the todos
-			this.model.getTodoCollection().on( "sync", this.renderTodos, this );
+			// bind the sync on the collection with rendering this view
+			this.collection.on( "sync", this.render, this );
 		},
 
 		render: function() {
-			// call render list which will also render the todos
-			this.renderList();
-			return this;
-		},
+			// first render the page, then the todos
+			this.$el.html(this.template());
 
-		renderList: function() {
-			// first rewrite the html to our list view (including the user data)
-			this.$el.html( this.template( this.model.getUserModel().toJSON() ) );
-			// now that we've rendered the list, we must render the todos
-			this.renderTodos();
-		},
-
-		renderTodos: function() {
 			var todosSelector = $("#todos");
 
-			// first clear the existing todos
+			// clear the existing todos
 			todosSelector.empty();
 			// for each todo model, create a new todo view and render it,
 			// appending it to the view
-			this.model.getTodoCollection().each(function (todo){
+			this.collection.each(function (todo){
 				var todoItemView = new TodoItemView({ model: todo });
 				todosSelector.append(todoItemView.render().el);
 			});
+
+			return this;
 		},
 
 		addTodo: function(event) {
@@ -84,19 +72,6 @@ function (Backbone, _, $, TodoItemView, TodoModel, todoList) {
 			// will automatically handle adding it to the right collection
 			todoModel.save();
 
-		},
-
-		logout: function() {
-			// to logout we perform a delete on the session resource
-			$.ajax({
-				type: "DELETE",
-				url: "/session"
-			}).done(function() {
-				Backbone.history.navigate("login", { trigger: true });
-			}).fail(function() {
-				console.error("unable to delete session!");
-			});
 		}
-
 	});
 });

@@ -27,7 +27,7 @@ function (Backbone, $, appView) {
 
 		list: function() {
 			$.get("/session").done(function(data) {
-				if (data) {
+				if (data === "true") {
 					// they are logged in, render the list view
 					appView.renderList();
 				} else {

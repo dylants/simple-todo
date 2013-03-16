@@ -4,7 +4,7 @@ require.config({
 		"backbone": "../lib/backbone-0.9.10",
 		"jquery": "../lib/jquery-1.9.1",
 		"text": "../lib/text-2.0.5",
-		"list-view-model": "models/list-view-model",
+		"app-view-model": "models/app-view-model",
 		"session-model": "models/session-model",
 		"todo-collection": "models/todo-collection",
 		"todo-model": "models/todo-model",

@@ -1,0 +1,15 @@
+<header>
+    <div id="page-heading">
+        <span id="title"><%- title %></span>
+    </div>
+    <div id="user-auth-data">
+        <% if (isLoggedIn) { %>
+            <span id="welcome">Welcome <%- firstName %></span>
+            <button id="logout">Logout</button>
+        <% } else { %>
+            <button id="login">Login</button>
+        <% } %>
+    </div>
+</header>
+
+<section id="main"></section>

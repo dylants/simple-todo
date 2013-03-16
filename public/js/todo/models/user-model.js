@@ -12,6 +12,11 @@ function (Backbone) {
 
 		defaults: {
 			firstName: ""
+		},
+
+		initialize: function() {
+			// load the list data for this user
+			this.fetch();
 		}
 	});
 });
