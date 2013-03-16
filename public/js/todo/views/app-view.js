@@ -24,6 +24,10 @@ function (Backbone, $, SessionModel, LoginView, ListViewModel, ListView) {
 		renderLogin: function() {
 			var sessionModel, loginView;
 
+			// set the page title
+			document.title = "Simple Todo • Login";
+
+			// build up the login view and render it
 			sessionModel = new SessionModel();
 			loginView = new LoginView({
 				model: sessionModel
@@ -34,6 +38,10 @@ function (Backbone, $, SessionModel, LoginView, ListViewModel, ListView) {
 		renderList: function() {
 			var listViewModel, listView;
 
+			// set the page title
+			document.title = "Simple Todo • List";
+
+			// build up the list view and render it
 			listViewModel = new ListViewModel();
 			listView = new ListView({
 				model: listViewModel
