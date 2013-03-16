@@ -25,8 +25,8 @@ function (Backbone, _, $, TodoItemView, TodoModel, todoList) {
 		},
 
 		initialize: function() {
-			// bind the sync of session model data to rendering this entire list view
-			this.model.getSessionModel().on( "sync", this.renderList, this );
+			// bind the sync of user model data to rendering this entire list view
+			this.model.getUserModel().on( "sync", this.renderList, this );
 			// bind the sync on todo collection to just rendering the todos
 			this.model.getTodoCollection().on( "sync", this.renderTodos, this );
 		},
@@ -39,7 +39,7 @@ function (Backbone, _, $, TodoItemView, TodoModel, todoList) {
 
 		renderList: function() {
 			// first rewrite the html to our list view (including the user data)
-			this.$el.html( this.template( this.model.getSessionModel().toJSON() ) );
+			this.$el.html( this.template( this.model.getUserModel().toJSON() ) );
 			// now that we've rendered the list, we must render the todos
 			this.renderTodos();
 		},

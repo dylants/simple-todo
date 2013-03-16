@@ -2,25 +2,25 @@
 /* global define:true */
 define([
 	"backbone",
-	"session-model",
+	"user-model",
 	"todo-collection"
 ],
-function (Backbone, SessionModel, TodoCollection) {
+function (Backbone, UserModel, TodoCollection) {
 	"use strict";
 
 	return Backbone.Model.extend({
 
 		initialize: function() {
-			// initialize the session model
-			this.sessionModel = new SessionModel();
+			// initialize the user model
+			this.userModel = new UserModel();
 			// load the data on this user
-			this.sessionModel.fetch();
+			this.userModel.fetch();
 			// initialize the todo collection of models
 			this.todoCollection = new TodoCollection();
 		},
 
-		getSessionModel: function() {
-			return this.sessionModel;
+		getUserModel: function() {
+			return this.userModel;
 		},
 
 		getTodoCollection: function() {

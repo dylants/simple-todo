@@ -3,16 +3,12 @@ var authenticationManager = require("../utilities/authenticationManager");
 module.exports = function(app) {
 
 	app.get("/session", function(req, res) {
-		var username;
-
+		// so for "get session" we'll return true if the session exists,
+		// else false if the session does not exist (the user is not logged in)
 		if (authenticationManager.isLoggedIn(req, res)) {
-			// if they are logged in, return their username
-			res.send({
-				username: authenticationManager.getUsername(req, res)
-			});
+			res.send("true");
 		} else {
-			// they are not logged in, return nothing
-			res.send("");
+			res.send("false");
 		}
 	});
 

@@ -8,6 +8,7 @@ require.config({
 		"session-model": "models/session-model",
 		"todo-collection": "models/todo-collection",
 		"todo-model": "models/todo-model",
+		"user-model": "models/user-model",
 		"todo-router": "routers/todo-router",
 		"app-view": "views/app-view",
 		"list-view": "views/list-view",
