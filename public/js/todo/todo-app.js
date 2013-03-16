@@ -14,10 +14,8 @@ function($, Backbone, TodoRouter) {
 		new TodoRouter();
 
 		// load up Backbone's history, triggering the default route
-		// also, try to use push state to avoid hash URLs
 		Backbone.history.start({
-			silent: false,
-			pushState: true
+			silent: false
 		});
 	});
 });
