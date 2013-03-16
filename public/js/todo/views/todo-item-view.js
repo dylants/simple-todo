@@ -33,7 +33,7 @@ function (Backbone, _, todoItem) {
 			// prevent the form submit
 			event.preventDefault();
 
-			var todoContent = this.$("input[id='todo-content']").val();
+			var todoContent = this.$("input[class='todo-content']").val();
 			this.model.set("content", todoContent);
 			this.model.save();
 		},

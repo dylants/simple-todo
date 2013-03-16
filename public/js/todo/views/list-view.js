@@ -63,7 +63,7 @@ function (Backbone, _, $, TodoItemView, TodoModel, todoList) {
 			});
 
 			// add it to our collection
-			this.model.getTodoCollection().add(todoModel);
+			this.collection.add(todoModel);
 
 			// save the new todo to our backend
 			// note: we do not need to save our entire collection here,

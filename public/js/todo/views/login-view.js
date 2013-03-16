@@ -16,7 +16,7 @@ function (Backbone, _, $, todoLogin) {
 		template: _.template(todoLogin),
 
 		events: {
-			"click #login": "login"
+			"click #login-button": "login"
 		},
 
 		initialize: function() {

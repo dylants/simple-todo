@@ -13,9 +13,6 @@ function (UserModel) {
 	}
 
 	AppViewModel.prototype.toJSON = function() {
-		// first make sure the user model is up to date
-		this.userModel.fetch();
-
 		return {
 			title: this.title,
 			isLoggedIn: this.isLoggedIn,
