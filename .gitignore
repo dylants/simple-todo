@@ -2,4 +2,6 @@
 *~
 *.swp
 .idea
+
 node_modules/*
+public/css/*
