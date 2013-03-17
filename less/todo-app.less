@@ -1,11 +1,14 @@
 body {
 	background: #EEE;
 	margin: 0px;
+	font-family: "Merriweather Sans", sans-serif;
 }
 
 header {
-	background: #AAA;
+	background: #222;
 	height: 50px;
+	color: #EEE;
+	box-shadow: 0 3px 5px #CCC;
 	#page-heading {
 		position: absolute;
 		top: 5px;
@@ -15,6 +18,20 @@ header {
 		position: absolute;
 		top: 5px;
 		right: 5px;
+	}
+}
+
+button, input[type="submit"] {
+	background: #00C90D;
+	border: #00C90D;
+	border-radius: 3px;
+}
+
+input[type="text"] {
+	background: #EEE;
+	font-family: "Merriweather Sans", sans-serif;
+	&:focus {
+		background: #FFF;
 	}
 }
 
