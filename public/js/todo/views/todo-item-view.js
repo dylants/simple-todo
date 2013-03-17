@@ -15,6 +15,7 @@ function (Backbone, _, todoItem) {
 		template: _.template(todoItem),
 
 		events: {
+			"blur .todo-content": "editTodo",
 			"click .edit-todo": "editTodo",
 			"click .delete-todo": "deleteTodo"
 		},
