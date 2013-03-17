@@ -42,16 +42,17 @@ function (Backbone, $, HeaderViewModel, HeaderView, SessionModel, LoginView,
 		},
 
 		renderLogin: function() {
-			var sessionModel, loginView;
+			var sessionModel, loginView, title;
 
 			// first render this page
 			this.render();
 
 			// set the page title
-			document.title = "Simple Todo • Login";
+			title = "Simple Todo • Login";
+			document.title = title;
 
 			// render the header
-			this.renderHeader("Todo Login", false);
+			this.renderHeader(title, false);
 
 			// build up the login view and render it
 			sessionModel = new SessionModel();
@@ -62,16 +63,17 @@ function (Backbone, $, HeaderViewModel, HeaderView, SessionModel, LoginView,
 		},
 
 		renderList: function() {
-			var todoCollection, listView;
+			var todoCollection, listView, title;
 
 			// first render this page
 			this.render();
 
 			// set the page title
-			document.title = "Simple Todo • List";
+			title = "Simple Todo • List";
+			document.title = title;
 
 			// render the header
-			this.renderHeader("Todo List", true);
+			this.renderHeader(title, true);
 
 			// build up the list view and render it
 			todoCollection = new TodoCollection();
