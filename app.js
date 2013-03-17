@@ -21,7 +21,7 @@ app.configure(function() {
 		dest: __dirname + "/public/css",
 		// if you're using a different src/dest directory, you MUST
 		// include the prefex, which matches the dest public directory
-		prefix: '/css',
+		prefix: "/css",
 		// force true recompiles on every request... not the best
 		// for production, but fine in debug while working through changes
 		force: true
