@@ -1,26 +1,28 @@
 body {
-	background: #EEE;
+	background: #CCC;
 	margin: 0px;
 	font-family: "Merriweather Sans", sans-serif;
 }
 
 header {
 	background: #222;
-	height: 50px;
+	height: 60px;
 	color: #EEE;
-	box-shadow: 0 3px 5px #CCC;
 
 	#page-heading {
 		position: absolute;
-		top: 10px;
-		left: 5px;
+		top: 15px;
+		left: 10px;
 		font-size: 1.5em;
 	}
 	#user-auth-data {
 		position: absolute;
 		top: 5px;
-		right: 5px;
+		right: 10px;
 		text-align: right;
+		#welcome {
+			padding-bottom: 5px;
+		}
 	}
 }
 
@@ -32,9 +34,8 @@ button {
 
 #main {
 	margin: 0 auto;
-	max-width: 500px;
 	text-align: center;
-	background: #01939A;//#FEFEFE;
+	background: #01939A;
 	padding-top: 10px;
 	padding-bottom: 10px;
 
@@ -49,15 +50,13 @@ button {
 	#todos {
 		padding-top: 10px;
 		padding-bottom: 5px;
-
-		.todo {
-			padding-bottom: 5px;
-		}
 	}
 
 	input[type="text"] {
 		font-family: "Merriweather Sans", sans-serif;
-		width: 150px;
+		font-size: 1em;
+		width: 200px;
+		height: 1.5em;
 	}
 
 	// hide the add and edit todo buttons
@@ -67,4 +66,18 @@ button {
 		width: 0px;
 		position: absolute;
 	}
+
+	#add-todo-form {
+		padding-top: 10px;
+		padding-bottom: 15px;
+
+		#todo-content {
+			width: 230px;
+		}
+	}
+}
+
+footer {
+	background: #222;
+	height: 60px;
 }
