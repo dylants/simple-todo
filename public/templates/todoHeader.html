@@ -1,13 +1,9 @@
 <div id="page-heading">
     <span id="title"><%- title %></span>
 </div>
-    <% if (isLoggedIn) { %>
-        <div id="user-auth-data">
-            <div id="welcome">Welcome, <%- firstName %></div>
-            <button id="logout-header">Logout</button>
-        </div>
-    <% } else { %>
-        <div id="login-data">
-            <button id="login-header">Login</button>
-        </div>
-    <% } %>
+<% if (isLoggedIn) { %>
+    <div id="user-auth-data">
+        <div id="welcome">Welcome, <%- firstName %></div>
+        <button id="logout-header">Logout</button>
+    </div>
+<% } %>
