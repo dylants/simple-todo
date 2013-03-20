@@ -1,4 +1,6 @@
 # Simple Todo #
+[![Build Status](https://travis-ci.org/DylanTS/simple-todo.png)](https://travis-ci.org/DylanTS/simple-todo)
+
 Another todo application!!!  Yay!!!
 
 ## Overview ##
