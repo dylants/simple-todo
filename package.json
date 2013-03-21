@@ -7,11 +7,12 @@
     "test": "./node_modules/.bin/jasmine-node spec/"
   },
   "dependencies": {
-    "express": "3.1.0",
-    "nodemon": "0.7.x",
-    "ejs": "0.8.x",
-    "less-middleware": "*",
-    "jasmine-node": "*",
-    "rewire": "*"
+    "express": "~3.1.0",
+    "nodemon": "~0.7.2",
+    "ejs": "~0.8.3",
+    "less-middleware": "~0.1.9"
+  },
+  "devDependencies": {
+    "jasmine-node": "~1.4.0"
   }
 }
