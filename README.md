@@ -9,7 +9,7 @@ Backbone.js application in a simple format.  Node.js is used to serve the applic
 the need for backend server communication in the demo.
 
 ## Technical Implementation Details ##
-TODO
+tbd -- still in progress
 
 ## Getting Started ##
-TODO
+tbd -- still in progress
