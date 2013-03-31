@@ -27,6 +27,12 @@ TodoDatabase.prototype.getTodos = function(userId) {
 TodoDatabase.prototype.addTodo = function(userId, content) {
 	var todo;
 
+	// sanity check
+	if (!content) {
+		// don't allow
+		return false;
+	}
+
 	if (!this.todoDB[userId]) {
 		// initialize the array of todos
 		this.todoDB[userId] = [];
@@ -55,6 +61,12 @@ TodoDatabase.prototype.addTodo = function(userId, content) {
  */
 TodoDatabase.prototype.updateTodo = function(userId, todoId, todoContent) {
 	var todo, todos, index;
+
+	// sanity check
+	if (!todoContent) {
+		// don't allow
+		return false;
+	}
 
 	// use the incoming data to build a todo
 	todo = {

@@ -27,11 +27,13 @@ describe("A TodoDatabase", function() {
 	});
 
 	describe("that contains a single todo for our userId", function() {
-		var todoDatabase;
+		var todoDatabase, myTodoId;
 
 		beforeEach(function() {
 			todoDatabase = new TodoDatabase();
-			todoDatabase.addTodo(userId, myTodo);
+			// add the todo, and get the ID of this newly added todo
+			// from the returned todo's ID
+			myTodoId = todoDatabase.addTodo(userId, myTodo).id;
 		});
 
 		it("should have one todo in the database", function() {
@@ -115,6 +117,96 @@ describe("A TodoDatabase", function() {
 					});
 				});
 			});
+		});
+
+		describe("when we update a todo for our userId", function() {
+			var updatedTodo = "fly a kite";
+
+			beforeEach(function() {
+				todoDatabase.updateTodo(userId, myTodoId, updatedTodo);
+			});
+
+			it("should still have one todo in the database", function() {
+				expect(todoDatabase.todoDB).to.exist;
+				expect(todoDatabase.todoDB[userId]).to.have.length(1);
+			});
+			it("should contain our updated todo", function() {
+				var returnedTodos, returnedTodo;
+
+				returnedTodos = todoDatabase.getTodos(userId);
+				expect(returnedTodos).to.exist;
+				expect(returnedTodos).to.have.length(1);
+
+				returnedTodo = returnedTodos[0];
+				expect(returnedTodo).to.exist;
+				expect(returnedTodo.id).to.exist;
+				expect(returnedTodo.id).to.equal(myTodoId);
+				expect(returnedTodo.content).to.exist;
+				expect(returnedTodo.content).to.equal(updatedTodo);
+			});
+		});
+
+		describe("when we update a todo with an ID that does not exist", function() {
+			it("should not allow, returning false", function() {
+				var result = todoDatabase.updateTodo(userId, 987, "more work");
+				expect(result).to.be.false;
+			});
+		});
+
+		describe("when we update a todo to no content", function() {
+			it("should not allow, returning false", function() {
+				var updatedTodo, returnedTodos, returnedTodo;
+				var updatedTodo = todoDatabase.updateTodo(userId, myTodoId, "");
+				expect(updatedTodo).to.be.false;
+
+				// verify the old todo still exists
+				returnedTodos = todoDatabase.getTodos(userId);
+				expect(returnedTodos).to.exist;
+				expect(returnedTodos).to.have.length(1);
+
+				returnedTodo = returnedTodos[0];
+				expect(returnedTodo).to.exist;
+				expect(returnedTodo.id).to.exist;
+				expect(returnedTodo.id).to.equal(myTodoId);
+				expect(returnedTodo.content).to.exist;
+				expect(returnedTodo.content).to.equal(myTodo);
+			});
+		});
+
+		describe("when we delete my todo for our userId", function() {
+			beforeEach(function() {
+				todoDatabase.deleteTodo(userId, myTodoId);
+			});
+
+			it("should not have any todos remaining in the database", function() {
+				expect(todoDatabase.todoDB).to.exist;
+				expect(todoDatabase.todoDB[userId]).to.be.empty;
+			});
+			it("a getTodos should return no todos for our userId", function() {
+				var returnedTodos = todoDatabase.getTodos(userId);
+				expect(returnedTodos).to.exist;
+				expect(returnedTodos).to.be.empty;
+			});
+		});
+
+		describe("when we delete a todo with an ID that does not exist", function() {
+			it("should not allow, returning false", function() {
+				var result = todoDatabase.deleteTodo(userId, 987);
+				expect(result).to.be.false;
+			});
+		});
+	});
+
+	describe("when adding a todo with no content", function() {
+		var todoDatabase;
+
+		beforeEach(function() {
+			todoDatabase = new TodoDatabase();
+		});
+
+		it("should return false", function() {
+			var returnedTodo = todoDatabase.addTodo(userId, "");
+			expect(returnedTodo).to.be.false;
 		});
 	});
 });
