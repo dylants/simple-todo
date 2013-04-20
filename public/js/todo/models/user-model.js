@@ -8,7 +8,7 @@ function (Backbone) {
 
 	return Backbone.Model.extend({
 
-		url: "/user",
+		urlRoot: "/user",
 
 		defaults: {
 			firstName: ""

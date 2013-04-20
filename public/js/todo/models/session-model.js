@@ -7,6 +7,6 @@ function (Backbone) {
 	"use strict";
 
 	return Backbone.Model.extend({
-		url: "/session"
+		urlRoot: "/session"
 	});
 });

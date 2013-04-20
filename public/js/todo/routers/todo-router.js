@@ -17,6 +17,7 @@ function (Backbone, $, appView) {
 
 		landing: function() {
 			// our default behavior is to send them to the list page
+			// which will determine if they have access to view the page
 			this.navigate("list", { trigger: true });
 		},
 
@@ -26,6 +27,7 @@ function (Backbone, $, appView) {
 		},
 
 		list: function() {
+			// make a GET request to session to determine if they're logged in
 			$.get("/session").done(function(data) {
 				if (data === "true") {
 					// they are logged in, render the list view
