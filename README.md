@@ -33,6 +33,9 @@ Mocha and Chai were used to test the application, which was hooked up to a conti
 service via Travis CI.  The status of the tests can be determined by looking at the build icon at
 the top of this readme.
 
+More information on the details of the application can be found here:  
+http://blog.dylants.com/2013/04/19/backbone-revisited/
+
 ## Getting Started ##
 Since this application requires a running backend, you must clone the project and run it locally.
 [Install Node.js and NPM](http://nodejs.org/), then clone the repository.  Once cloned,
