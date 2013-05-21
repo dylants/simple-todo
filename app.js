@@ -5,7 +5,7 @@ var express = require("express"),
 var app = express();
 
 app.configure(function() {
-	app.set("port", 3000);
+	app.set("port", process.env.VCAP_APP_PORT || 3000);
 	app.set("views", __dirname + "/views");
 	app.engine('html', require('ejs').renderFile);
 	app.use(express.cookieParser("simple-todo"));
@@ -24,7 +24,7 @@ app.configure(function() {
 		prefix: "/css",
 		// force true recompiles on every request... not the best
 		// for production, but fine in debug while working through changes
-		force: true
+		//force: true
 	}));
 	app.use(express.static(__dirname + "/public"));
 });
