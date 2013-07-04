@@ -24,7 +24,7 @@ app.configure(function() {
 		prefix: "/css",
 		// force true recompiles on every request... not the best
 		// for production, but fine in debug while working through changes
-		//force: true
+		force: false
 	}));
 	app.use(express.static(__dirname + "/public"));
 });
@@ -33,6 +33,6 @@ app.configure("development", function() {
 	app.use(express.errorHandler());
 });
 
-app.listen(app.get("port"), function() {
-	console.log("Express server listening on port " + app.get("port"));
-});
+// instead of starting the application here, export the app so that it can
+// be loaded differently based on the use case (running the app vs testing)
+module.exports = app;
