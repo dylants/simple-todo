@@ -15,7 +15,9 @@ function($, Backbone, TodoRouter) {
 
 		// load up Backbone's history, triggering the default route
 		Backbone.history.start({
-			silent: false
+			silent: false,
+			root: "/simple-todo",
+			pushState: true
 		});
 	});
 });

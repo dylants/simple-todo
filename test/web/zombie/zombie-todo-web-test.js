@@ -7,7 +7,7 @@ var assert = require("chai").assert,
 describe("The Todo App", function() {
 	var server, browser, todoUrl;
 
-	todoUrl = "http://localhost:3001/";
+	todoUrl = "http://localhost:3001/simple-todo";
 
 	before(function() {
 		// before ALL the tests, start our node server (on a test port, 3001)
@@ -16,16 +16,12 @@ describe("The Todo App", function() {
 
 	beforeEach(function() {
 		// before EACH test, create a new zombie browser
-		browser = new Browser({
-			// useful to set debug when things go wrong...
-			debug: false,
-			// for some reason, these pages wait forever to load in zombie,
-			// so we'll hack it here and set a max wait time to a low number.
-			// this has the adverse affect of causing some tests to fail if
-			// in fact we've guessed this number too low.
-			// (in milliseconds)
-			waitDuration: 500
-		});
+		// 
+		// some useful options when things go wrong:
+		// debug: true  =  outputs debug information for zombie
+		// waitDuration: 500  =  will only wait 500 milliseconds
+		//   for the page to load before moving on
+		browser = new Browser();
 	});
 
 	after(function() {
@@ -77,7 +73,7 @@ describe("The Todo App", function() {
 		describe("when adding a todo item", function() {
 			var todoContent = "fly a kite";
 
-			beforeEach(function(done) {
+			before(function(done) {
 				browser.fill("todo-content", todoContent);
 				browser.pressButton("Add Todo").then(done, done);
 			});
@@ -85,14 +81,15 @@ describe("The Todo App", function() {
 			it("should show the added todo", function(done) {
 				assert(browser.query(".todo-content").value === todoContent,
 					"todo content must match");
+				// done with test
 				done();
 			});
 
 			it("should be able to delete the todo", function(done) {
 				browser.pressButton(".delete-todo", function() {
-					console.log(browser.html());
-					assert(browser.query(".todo-content").value === todoContent,
-						"todo content must match");
+					assert.isNull(browser.query(".todo-content"),
+						"todo should be deleted");
+					// done with test
 					done();
 				});
 			});
