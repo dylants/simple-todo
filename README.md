@@ -29,9 +29,9 @@ the Backbone router, and starts Backbone's history, invoking the router.  The ro
 to either the login page (if they are not logged in) or the todo page (if they are logged in), and
 each view then reacts to events to update the models or transition the user to another page.
 
-Mocha and Chai were used to test the application, which was hooked up to a continuous integration
-service via Travis CI.  The status of the tests can be determined by looking at the build icon at
-the top of this readme.
+Mocha, Chai, and Zombie were used to test the application, which was hooked up to a continuous
+integration service via Travis CI.  The status of the tests can be determined by looking at the
+build icon at the top of this readme.
 
 More information on the details of the application can be found here:  
 http://blog.dylants.com/2013/04/19/backbone-revisited/
@@ -41,7 +41,9 @@ Since this application requires a running backend, you must clone the project an
 [Install Node.js and NPM](http://nodejs.org/), then clone the repository.  Once cloned,
 cd into the directory and run <code>npm install</code> to install all Node dependencies.
 
-To start the application run <code>npm start</code>.  The output should direct you to the running
-instance's hostname and port.  Bring that up in a browser to view the application.
+To start the application run <code>npm start</code>.  Once running, the simple-todo application
+can be viewed at: [http://localhost:3000/simple-todo](http://localhost:3000/simple-todo).  A live
+running demo of the application may also be available via a link in the description field of this
+GitHub project (though I don't guarantee it will exist forever).
 
 You can also run the tests via <code>npm test</code>.
