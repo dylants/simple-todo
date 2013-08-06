@@ -4,4 +4,4 @@
 .idea
 
 node_modules/*
-public/css/*
+public/css/todo-app.css
