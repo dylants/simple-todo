@@ -1,5 +1,5 @@
 # Simple Todo #
-[![Build Status](https://travis-ci.org/DylanTS/simple-todo.png)](https://travis-ci.org/DylanTS/simple-todo)
+[![Build Status](https://travis-ci.org/dylants/simple-todo.png)](https://travis-ci.org/dylants/simple-todo)
 
 Another todo application!!!  Yay!!!
 
