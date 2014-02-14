@@ -5,7 +5,8 @@ var express = require("express"),
 var app = express();
 
 app.configure(function() {
-	app.set("port", process.env.VCAP_APP_PORT || 3000);
+	// read the port from the environment, else set to 3000
+	app.set("port", process.env.PORT || 3000);
 	app.set("views", __dirname + "/views");
 	app.engine('html', require('ejs').renderFile);
 	app.use(express.cookieParser("simple-todo"));

@@ -42,6 +42,9 @@ function (Backbone, _, $, TodoItemView, TodoModel, todoList) {
 				todosSelector.append(todoItemView.render().el);
 			});
 
+			// focus the text input to enter the todo
+			this.$("input[name='todo-content']").focus();
+
 			return this;
 		},
 
@@ -72,6 +75,8 @@ function (Backbone, _, $, TodoItemView, TodoModel, todoList) {
 			// will automatically handle adding it to the right collection
 			todoModel.save();
 
+			// focus the text input to enter the todo
+			todoContentInput.focus();
 		}
 	});
 });
